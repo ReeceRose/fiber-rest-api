@@ -1,6 +1,7 @@
 package book
 
 import (
+	"github.com/ReeceRose/fiber-rest-api/database"
 	"github.com/gofiber/fiber/v2"
 	"github.com/jinzhu/gorm"
 )
@@ -13,7 +14,11 @@ type Book struct {
 }
 
 func GetBooks(c *fiber.Ctx) error {
-	return c.SendString("All books")
+	db := database.DBConn
+	var books []Book
+	db.Find(&books)
+
+	return c.JSON(books)
 }
 
 func GetBook(c *fiber.Ctx) error {
