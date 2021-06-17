@@ -5,6 +5,7 @@ import (
 
 	"github.com/ReeceRose/fiber-rest-api/book"
 	"github.com/ReeceRose/fiber-rest-api/database"
+	"github.com/ReeceRose/fiber-rest-api/models"
 	"github.com/gofiber/fiber/v2"
 	"github.com/jinzhu/gorm"
 )
@@ -26,7 +27,7 @@ func initDatabase() {
 	fmt.Println("Datbase connection successfully opened")
 
 	// Auto migrate DB
-	database.DBConn.AutoMigrate(&book.Book{})
+	database.DBConn.AutoMigrate(&models.Book{})
 	fmt.Println("Database migrated")
 }
 
