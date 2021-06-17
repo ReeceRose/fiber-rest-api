@@ -2,14 +2,14 @@ package controllers
 
 import (
 	"github.com/ReeceRose/fiber-rest-api/database"
-	"github.com/ReeceRose/fiber-rest-api/entities"
+	"github.com/ReeceRose/fiber-rest-api/models"
 	"github.com/gofiber/fiber/v2"
 )
 
 func GetBooks(c *fiber.Ctx) error {
 	db := database.DBConn
 
-	var books []entities.Book
+	var books []models.Book
 	db.Find(&books)
 
 	return c.JSON(books)
@@ -19,7 +19,7 @@ func GetBook(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
 
-	var book entities.Book
+	var book models.Book
 	db.Find(&book, id)
 
 	return c.JSON(book)
@@ -28,7 +28,7 @@ func GetBook(c *fiber.Ctx) error {
 func NewBook(c *fiber.Ctx) error {
 	db := database.DBConn
 
-	book := new(entities.Book)
+	book := new(models.Book)
 
 	if err := c.BodyParser(book); err != nil {
 		c.SendStatus(500)
@@ -43,7 +43,7 @@ func DeleteBook(c *fiber.Ctx) error {
 	id := c.Params("id")
 	db := database.DBConn
 
-	var book entities.Book
+	var book models.Book
 	db.First(&book, id)
 
 	if book.Title == "" {
