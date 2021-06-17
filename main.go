@@ -31,7 +31,6 @@ func initDatabase() {
 }
 
 func main() {
-
 	app := fiber.New()
 
 	initDatabase()
