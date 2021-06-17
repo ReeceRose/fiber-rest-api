@@ -31,8 +31,8 @@ func NewBook(c *fiber.Ctx) error {
 	book := new(models.Book)
 
 	if err := c.BodyParser(book); err != nil {
-		c.SendStatus(500)
-		return c.JSON(err)
+		c.SendStatus(fiber.StatusBadRequest)
+		return c.JSON(fiber.Map{"message": err})
 	}
 
 	db.Create(&book)
@@ -47,10 +47,10 @@ func DeleteBook(c *fiber.Ctx) error {
 	db.First(&book, id)
 
 	if book.Title == "" {
-		c.SendStatus(500)
-		return c.SendString("No book found with given ID")
+		c.SendStatus(fiber.StatusBadRequest)
+		return c.JSON(fiber.Map{"message": "No book found with given ID"})
 	}
 
 	db.Delete(&book)
-	return c.JSON("Book successfully deleted")
+	return c.JSON(fiber.Map{"message": "Book successfully deleted"})
 }
