@@ -24,6 +24,10 @@ func initDatabase() {
 	}
 
 	fmt.Println("Datbase connection successfully opened")
+
+	// Auto migrate DB
+	database.DBConn.AutoMigrate(&book.Book{})
+	fmt.Println("Database migrated")
 }
 
 func main() {
