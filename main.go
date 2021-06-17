@@ -3,19 +3,12 @@ package main
 import (
 	"fmt"
 
-	"github.com/ReeceRose/fiber-rest-api/controllers"
 	"github.com/ReeceRose/fiber-rest-api/database"
 	"github.com/ReeceRose/fiber-rest-api/entities"
+	"github.com/ReeceRose/fiber-rest-api/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/jinzhu/gorm"
 )
-
-func setupRoutes(app *fiber.App) {
-	app.Get("/api/v1/book", controllers.GetBooks)
-	app.Get("/api/v1/book/:id", controllers.GetBook)
-	app.Post("/api/v1/book", controllers.NewBook)
-	app.Delete("/api/v1/book/:id", controllers.DeleteBook)
-}
 
 func initDatabase() {
 	var err error
@@ -37,7 +30,7 @@ func main() {
 	initDatabase()
 	defer database.DBConn.Close()
 
-	setupRoutes(app)
+	routes.Setup(app)
 
 	app.Listen(":3000")
 }
