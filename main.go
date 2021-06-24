@@ -7,6 +7,7 @@ import (
 	"github.com/ReeceRose/fiber-rest-api/models"
 	"github.com/ReeceRose/fiber-rest-api/routes"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/jinzhu/gorm"
 )
 
@@ -26,6 +27,8 @@ func initDatabase() {
 
 func main() {
 	app := fiber.New()
+
+	app.Use(logger.New())
 
 	initDatabase()
 	defer database.DBConn.Close()
