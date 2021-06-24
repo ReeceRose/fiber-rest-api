@@ -4,7 +4,7 @@ Simple REST API built with Go & Fiber
 
 ## About
 
-This is a re-creation of [Chi REST API](https://github.com/ReeceRose/chi-rest-api) and [Echo REST API](https://github.com/ReeceRose/echo-rest-api), which are REST APIs for books that uses the Chi and Echo web framework. This is to compare the frameworks and see which I enjoy more and will be using for upcoming projects.
+This is a re-creation of [Chi REST API](https://github.com/ReeceRose/chi-rest-api) and [Echo REST API](https://github.com/ReeceRose/echo-rest-api). This is to compare the frameworks and see which I enjoy more and will be using for upcoming projects.
 
 ## Clone repository
 
